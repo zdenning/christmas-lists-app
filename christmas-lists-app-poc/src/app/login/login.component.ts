@@ -26,17 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if (this.userService.getCurrentUser() != undefined) {
+      this.router.navigate(['/users']);
+    }
   }
 
   async onSubmit(loginData) {
-    // this.userService.getUsers()
-    //   .subscribe(userList => this.usersList = userList
-    //     .filter(u => {
-    //       u.username == loginData.username;
-    //       console.warn(u.username == loginData.username);
-    //     })
-    //   );
     this.usersList = await this.userService.getUsers();
     for (let i = 0; i < this.usersList.length; i++) {
       if (this.usersList[i].username == loginData.username) {

@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../item';
 import { ListService } from '../list.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-item-list',
@@ -20,13 +21,13 @@ export class ItemListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.username = this.route.snapshot.paramMap.get('username');
-    this.userService.getUsers().subscribe(
-      users => this.firstName = users
-        .filter(user => user.username === this.username)
-      [0].firstName
-    );
+
+    var users: User[] = await this.userService.getUsers();
+    this.firstName = users.filter(user =>
+      user.username == this.username)[0].firstName;
+
     this.listService.getList(this.username)
       .subscribe(items => this.list = items);
   }
