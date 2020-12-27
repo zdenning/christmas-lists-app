@@ -1,0 +1,44 @@
+<div id="create-user-component">
+        <h4>Create New User</h4>
+    </div>
+    
+        <form [formGroup]="createUserForm" 
+            (ngSubmit)="onSubmit(createUserForm.value)">
+        <div>
+          <label for="username">
+            Username
+          </label>
+          <input id="username" type="text" formControlName="username" />
+        </div>
+          
+        <div>
+          <label for="password">
+            Password
+          </label>
+          <input id="password" type="password" formControlName="password" />
+        </div>
+
+        <div>
+          <label for="reEnterPassword">
+            Re-enter Password
+          </label>
+          <input id="reEnterPassword" type="password"
+            formControlName="reEnterPassword"
+            />
+          <!-- <div *ngIf="reEnterPassword.invalid"
+              class="alert alert-danger">
+              <div *ngIf="reEnterPassword.errors.pattern">
+                Passwords do not match
+              </div>
+          </div> -->
+        </div>
+
+        <div>
+          <label for="firstName">
+            First Name
+          </label>
+          <input id="firstName" type="text" formControlName="firstName" />
+        </div>
+          
+        <button class="button" type="submit">Create</button>
+    </form>

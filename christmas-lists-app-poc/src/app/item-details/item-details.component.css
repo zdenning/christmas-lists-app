@@ -1,0 +1,11 @@
+
+h1 {
+    text-transform: capitalize; 
+}
+
+/* Button */
+.button, button {
+    
+    background-color: #1976d2;
+    color: white;
+  }

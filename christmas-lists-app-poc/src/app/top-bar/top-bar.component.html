@@ -1,0 +1,9 @@
+<a [routerLink]="['/']">
+    <h1>Christmas Lists</h1>
+  </a>
+  
+  <div *ngIf="router.url != '/createuser' && router.url != '/login'" >
+    <a routerLink="/cart" class="button fancy-button"
+    ><i class="material-icons">list</i>My List</a
+    >
+</div>

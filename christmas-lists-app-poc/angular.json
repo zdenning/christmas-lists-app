@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "christmas-lists-app-poc"
+  "defaultProject": "christmas-lists-app-poc",
+  "cli": {
+    "analytics": false
+  }
 }

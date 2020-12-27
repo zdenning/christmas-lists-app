@@ -1,0 +1,6 @@
+<p></p>
+<div *ngFor="let user of usersList" 
+    [routerLink]="['/list', user.username]" class="user-list"
+ >
+  <h3>{{user.firstName}}</h3>
+</div>

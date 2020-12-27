@@ -1,0 +1,25 @@
+<div id="login-component">
+    <h4>Log In</h4>
+</div>
+
+    <form [formGroup]="loginForm" 
+        (ngSubmit)="onSubmit(loginForm.value)">
+    <div>
+      <label for="username">
+        Username
+      </label>
+      <input id="username" type="text" formControlName="username" />
+    </div>
+      
+    <div>
+      <label for="password">
+        Password
+      </label>
+      <input id="password" type="password" formControlName="password" />
+    </div>
+      
+    <button class="button" type="submit">Log In</button>
+  </form>
+
+  <button class="button" routerLink="/createuser">New User</button>
+
