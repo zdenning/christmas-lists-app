@@ -26,11 +26,6 @@ export class UserService {
       return this.http.post<User>(this.host + this.userPost, user);
   }
 
-  // getUsers(): Observable<User[]> {
-  //   return this.http.get<User[]>(this.host + this.allUsersGet);
-      
-  // }
-
   async getUsers() {
     return await this.http.get<User[]>(this.host + this.allUsersGet).toPromise();
   }
@@ -44,7 +39,10 @@ export class UserService {
   }
 
   getCurrentUser(): User {
-    return JSON.parse(localStorage.getItem("currentUser"));
+    if (localStorage.getItem("currentUser") == undefined) {
+      return JSON.parse(localStorage.getItem("currentUser"));
+    }
+    else return null;
   }
  
   setCurrentUser(user: User): void {
