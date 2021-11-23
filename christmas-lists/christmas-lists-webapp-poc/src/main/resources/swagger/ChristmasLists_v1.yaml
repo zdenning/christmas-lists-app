@@ -1,0 +1,220 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Christmas Lists
+  description: An API to manager users and their Christmas wish lists. Users can see others' lists and what has been bought, but cannot see what has been bought on their own list.
+servers:
+  - url: http://localhost:8080/v1
+paths:
+  /list:
+    get:
+      description: 
+        Retrieves the list for specified user.
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: Username for the list being retrieved.
+        - in: query
+          name: currentUser
+          schema:
+            type: string
+          description: Username for the logged in user.
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChristmasList'
+    post:
+      description: 
+        Adds the list for the logged in user.
+      parameters:
+        - in: query
+          name: currentUser
+          schema:
+            type: string
+          description: Username for the list being added to.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gift'
+      responses:
+        '200':
+          description: Successful Operation
+    patch:
+      description:
+        deletes one item from the list
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: Username for the list being added to.
+        - in: query
+          name: currentUser
+          schema:
+            type: string
+          description: The current user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gift'
+      responses:
+        '200':
+          description: Successful Operation
+    delete:
+      description:
+        deletes one item from the list
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: Username for the list being added to.
+        - in: query
+          name: currentUser
+          schema:
+            type: string
+          description: The current user.
+        - in: query
+          name: item
+          schema:
+            type: string
+          description: The name of the item to delete.
+      responses:
+        '200':
+          description: Successful Operation
+  /list/buy:
+    post:
+      description: 
+        Adds the list for the logged in user.
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: Username for the list being added to.
+        - in: query
+          name: currentUser
+          schema:
+            type: string
+          description: The current user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gift'
+      responses:
+        '200':
+          description: Successful Operation
+  /user:
+    post:
+      summary: "Create user"
+      description: This can only be done by the logged in user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        default:
+          description: "successful operation"
+    get:
+      summary: "Get user"
+      description: Get user object based on username.
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    delete:
+      summary: "Delete user"
+      description: This can only be done if the user being deleted is the current user. That will be handled by the application.
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful Operation
+        
+  /user/all:
+    get:
+      summary: "Gets all users" 
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /user/friends:
+    get:
+      summary: "Gets all users" 
+      description: Get all users in the friends list
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+components:
+  schemas:
+      ChristmasList:
+        type: array
+        items:
+            $ref: '#/components/schemas/Gift'
+      Gift:
+        type: object
+        required:
+          - name
+        properties:
+          name:
+            type: string
+          description:
+            type: string
+          bought:
+            type: boolean
+            default: false
+      User:
+        type: object
+        required:
+          - username
+          - password
+          - firstName
+        properties:
+          username:
+            type: string
+          password:
+            type: string
+          firstName:
+            type: string
