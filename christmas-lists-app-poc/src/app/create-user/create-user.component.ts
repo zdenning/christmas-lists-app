@@ -4,6 +4,7 @@ import { UserService } from "../user.service";
 import { User } from '../user';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-create-user',
@@ -27,10 +28,11 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(userData) {
+  onSubmit(userData: User) {
       this.userService.addUser(userData as User)
         .subscribe();
       console.log(`Submitted create user:`, userData);
+      this.userService.setCurrentUser(userData.username);
       this.router.navigate(['/users']);
   }
 

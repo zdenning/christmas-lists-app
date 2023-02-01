@@ -3,6 +3,7 @@ import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,6 @@ import { User } from '../user';
 export class LoginComponent implements OnInit {
   loginForm;
   usersList: User[];
-  currentUser: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,21 +26,22 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (null != this.userService.getCurrentUser()) {
+    if (null != Globals.currentUser) {
       this.router.navigate(['/users']);
     }
   }
 
   async onSubmit(loginData) {
+    console.warn(loginData.username + " **** " + loginData.password);
     this.usersList = await this.userService.getUsers();
     for (let i = 0; i < this.usersList.length; i++) {
       if (this.usersList[i].username == loginData.username) {
-        this.currentUser = this.usersList[i];
+        this.userService.setCurrentUser(this.usersList[i].username);
       }
     }
     this.userService.login(loginData.username, loginData.password)
       .subscribe((response: Response) => {
-        this.userService.setCurrentUser(this.currentUser);
+        // this.userService.setCurrentUser(Globals.currentUser);
         this.router.navigate(['/users']);
       }, error => {
         window.alert('Invalid username/password');

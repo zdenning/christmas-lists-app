@@ -1,0 +1,24 @@
+<div id="add-item-dialog-component">
+    <h4>Add Item</h4>
+</div>
+
+
+    <form [formGroup]="addItemForm" 
+        (ngSubmit)="onSubmit(addItemForm.value)">
+        <div>
+            <label for="name">
+                Item name
+            </label>
+            <input id="name" type="text" formControlName="name" />
+        </div>
+
+        <div>
+            <label for="description">
+                Description
+            </label>
+            <input id="description" type="text" formControlName="description" />
+        </div>
+
+        <button class="button" type="submit" [mat-dialog-close]>Add</button>
+        <button class="button" (click)="onClose()" [mat-dialog-close]>Cancel</button>
+    </form>

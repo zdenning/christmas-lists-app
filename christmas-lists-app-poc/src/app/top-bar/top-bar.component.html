@@ -1,9 +1,17 @@
 <a [routerLink]="['/']">
     <h1>Christmas Lists</h1>
   </a>
-  
-  <div *ngIf="router.url != '/createuser' && router.url != '/login'" >
-    <a routerLink="/cart" class="button fancy-button"
-    ><i class="material-icons">list</i>My List</a
-    >
+
+<div *ngIf="router.url != '/createuser' && router.url != '/login'" >
+<button class="mat-button" mat-button [matMenuTriggerFor]="menu">
+    <i class="material-icons">more_vert</i>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="myList()">
+    <span>My list</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <span>Log out</span>
+  </button>
+</mat-menu>
 </div>

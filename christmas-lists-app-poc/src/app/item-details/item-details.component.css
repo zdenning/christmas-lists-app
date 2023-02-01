@@ -5,7 +5,10 @@ h1 {
 
 /* Button */
 .button, button {
-    
     background-color: #1976d2;
     color: white;
   }
+
+.bought-true-button {
+    opacity: 0.8;
+}

@@ -138,6 +138,20 @@
     margin: 0;
   }
   
+  app-top-bar i {
+    color: white;
+  }
+
+  app-top-bar .mat-button {
+    background-color: #009407;
+    right: 0;
+    align-items: right;
+  }
+
+  app-top-bar .mat-button-add {
+    background-color: #009407;
+  }
+  
   /* Checkout Cart, Shipping Prices */
   
   .user-list, .christmas-list {
@@ -156,4 +170,6 @@
   .user-list, .christmas-list :hover {
     opacity: 0.8;
   }
+
+ 
 
