@@ -13,12 +13,13 @@ const routes: Routes = [
   { path: 'createuser', component: CreateUserComponent },
   { path: 'users', component: UserListComponent },
   { path: 'list/:username', component: ItemListComponent },
-  { path: 'details', component: ItemDetailsComponent }
+  { path: 'mylist/:username', component: ItemListComponent },
+  { path: 'details/:username', component: ItemDetailsComponent }
 ];
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,15 @@
+<div id="add-friend-component">
+    <h4>Add Friend</h4>
+</div>
+
+<form [formGroup]="addFriendForm" (ngSubmit)="onSubmit(addFriendForm.value)">
+    <div>
+        <label for="username">
+            Username
+        </label>
+        <input id="username" type="text" formControlName="username" />
+    </div>
+
+    <button class="button" type="submit" [mat-dialog-close]>Add</button>
+    <button class="button" (click)="onClose()" [mat-dialog-close]>Cancel</button>
+</form>

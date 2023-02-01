@@ -1,5 +1,5 @@
 export interface Item {
     name: string;
-    linkOrNotes: string;
-    bought: boolean;
+    description?: string;
+    bought?: boolean;
 }

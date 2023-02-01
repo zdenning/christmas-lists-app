@@ -1,0 +1,27 @@
+<div id="edit-item-dialog-component">
+    <h4>Add Item</h4>
+</div>
+
+
+    <form [formGroup]="editItemForm" 
+        (ngSubmit)="onSubmit(editItemForm.value)">
+        <div>
+            <label for="username">
+                Item name
+            </label>
+            <input id="name" type="text" formControlName="name" />
+        </div>
+
+        <div>
+            <label for="description">
+                Description
+            </label>
+            <input id="description" type="text" formControlName="description" />
+        </div>
+
+        <button class="button" type="submit" mat-dialog-close>Update</button>
+        <button class="button" (click)="onClose()" mat-dialog-close>Cancel</button>
+        <button class="button" (click)="deleteItem(editItemForm.value)" mat-dialog-close>
+            Delete
+        </button>
+    </form>

@@ -1,6 +1,12 @@
 <h3>{{firstName}}'s Christmas Wish List</h3>
 
-<p>Tap item to view details</p>
+<p *ngIf="list?.length==0 && currentUsername==username">
+  You haven't added anything yet!
+</p>
+<p *ngIf="list?.length==0 && currentUsername!=username">
+  {{firstName}} hasn't added anything yet!
+</p>
+<p *ngIf="list?.length>0">Tap item to view details</p>
 
 <div
   class="christmas-list"
@@ -10,4 +16,6 @@
   <p>{{item.name}}</p>
 </div>
 
-<!-- [routerLink]="['/details', item]" -->
+<button *ngIf="currentUsername==username" (click)="addItem()">
+    Add Item
+</button>
